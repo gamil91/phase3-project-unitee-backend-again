@@ -14,8 +14,8 @@ class CartsController < ApplicationController
     end
 
     def create
-        cart = Cart.create
-        render json: cart
+            cart = Cart.create
+            render json: cart
     end
 
     def destroy
