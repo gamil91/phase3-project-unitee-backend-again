@@ -9,12 +9,12 @@ class CartItemsController < ApplicationController
   
   
     def create
-      # if Cart.all.length == 0
-      #   cart = Cart.create
-      #   cart_item = CartItem.create(quantity: params[:quantity], color: params[:color], size: params[:size], item_id: params[:item_id], cart_id: cart.id
-      #   )
-      #   render json: cart_item, except: [:created_at, :updated_at]
-      # end
+      if Cart.all.length == 0
+        cart = Cart.create
+        cart_item = CartItem.create(quantity: params[:quantity], color: params[:color], size: params[:size], item_id: params[:item_id], cart_id: cart.id
+        )
+        render json: cart_item, except: [:created_at, :updated_at]
+      else
 
         item = Item.find(params[:item_id])
         current_cart = Cart.find(params[:cart_id])
@@ -33,8 +33,9 @@ class CartItemsController < ApplicationController
           new_cart_item = CartItem.create(cart_item_params)
           render json: new_cart_item
         end
-      
+      end
     end
+
 
     def update
       cart_item = CartItem.find(params[:id])
@@ -47,6 +48,7 @@ class CartItemsController < ApplicationController
     def destroy  
       cart_item = CartItem.find(params[:id])
       cart_item.destroy
+      render json: cart_item
     end
 
 
