@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :cart_items
 
   get 'items/sort/:color', to: "items#sorted_by_color"
+  get 'items/sales/true', to: "items#sale_items"
 
 
 end

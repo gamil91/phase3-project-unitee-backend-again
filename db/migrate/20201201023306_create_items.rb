@@ -3,6 +3,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
     create_table :items do |t|
       t.string :name
       t.integer :price
+      t.boolean :clearance
 
       t.timestamps
     end
