@@ -96,7 +96,7 @@
 
 # ## ----- wave ----->
 # Image.create(image_url:"https://i.postimg.cc/Z5cMgftg/wave1.png", color: "white", item_id:14)
-# Image.create(image_url:"https://i.postimg.cc/Z5cMgftg/wave1.png", color: "black", item_id:14)
+# Image.create(image_url:"https://i.postimg.cc/dVvf4bXr/wave2.png", color: "black", item_id:14)
 # Image.create(image_url:"https://i.postimg.cc/GpgS3Hpx/wave3.png", color: "maroon", item_id:14)
 # Image.create(image_url:"https://i.postimg.cc/bJGVZpDc/wave4.png", color: "blue", item_id:14)
 # Image.create(image_url:"https://i.postimg.cc/Y9JngZY4/wave5.png", color: "yellow", item_id:14)

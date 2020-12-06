@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   resources :carts, only: [:index, :show, :create, :destroy]
   resources :cart_items
 
+  get 'items/sort/:color', to: "items#sorted_by_color"
+
 
 end
