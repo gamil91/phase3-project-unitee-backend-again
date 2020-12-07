@@ -3,7 +3,7 @@ class CartItemsController < ApplicationController
     def index
       cart_items = CartItem.all
       render json: cart_items, include: 
-              [:item => {:only => [:name, :price]}],
+              [:item => {:only => [:name, :price, :clearance]}],
               except: [:created_at, :updated_at]
     end
   
@@ -13,7 +13,10 @@ class CartItemsController < ApplicationController
         cart = Cart.create
         cart_item = CartItem.create(quantity: params[:quantity], color: params[:color], size: params[:size], item_id: params[:item_id], cart_id: cart.id
         )
-        render json: cart_item, except: [:created_at, :updated_at]
+        render json: cart_item
+        
+        # , include: 
+        # [:items => {:only => [:name, :price, :clearance]}], except: [:created_at, :updated_at]
       else
 
         item = Item.find(params[:item_id])
