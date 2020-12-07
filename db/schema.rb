@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_12_02_210426) do
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.integer "price"
+    t.boolean "clearance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -14,14 +14,21 @@ class CartsController < ApplicationController
     end
 
     def create
+        if Cart.all.length != 0 
+            cart = Cart.all.last
+            render json: cart
+        else
             cart = Cart.create
             render json: cart
+        end
     end
 
     def destroy
-        cart = Cart.find_by(id: params[:id])
+        cart = Cart.find(params[:id])
         cart.destroy
+        render json: cart
     end
+
 
 
 end
