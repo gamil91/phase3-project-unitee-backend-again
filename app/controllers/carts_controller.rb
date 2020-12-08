@@ -7,16 +7,17 @@ class CartsController < ApplicationController
 
     def show
         cart = Cart.all.find_by(id: params[:id])
-        render json: cart, include: 
-                [:cart_items => {:only => [:quantity, :color, :size, :item_id]}, 
-                :items => {:only => [:name, :price]}],
-                except: [:created_at, :updated_at]
+        render json: cart, 
+            include: 
+                [:user,
+                :cart_items => {:only => [:quantity, :color, :size, :item_id,]}],
+            except: [:created_at, :updated_at]
     end
 
     def create
-        if Cart.all.length != 0 
-            cart = Cart.all.last
-            render json: cart
+        main_cart = Cart.all.find_by(user_id: nil)
+        if !!main_cart
+            render json: main_cart
         else
             cart = Cart.create
             render json: cart
@@ -24,6 +25,8 @@ class CartsController < ApplicationController
     end
 
     def destroy
+        
+
         cart = Cart.find(params[:id])
         cart.destroy
         render json: cart

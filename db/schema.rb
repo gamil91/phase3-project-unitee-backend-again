@@ -10,21 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_02_210426) do
+ActiveRecord::Schema.define(version: 2020_12_08_033227) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "quantity"
     t.string "color"
     t.string "size"
+    t.integer "purchase_id"
     t.integer "item_id", null: false
-    t.integer "cart_id", null: false
+    t.integer "cart_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
     t.index ["item_id"], name: "index_cart_items_on_item_id"
   end
 
   create_table "carts", force: :cascade do |t|
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -46,7 +47,23 @@ ActiveRecord::Schema.define(version: 2020_12_02_210426) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "cart_items", "carts"
+  create_table "purchases", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_purchases_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "cart_items", "items"
   add_foreign_key "images", "items"
+  add_foreign_key "purchases", "users"
 end
