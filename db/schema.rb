@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_12_08_033227) do
   create_table "purchases", force: :cascade do |t|
     t.string "name"
     t.string "address"
+    t.string "price"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
